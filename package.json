@@ -1,0 +1,30 @@
+{
+  "name": "webpack-ssh-deploy-plugin",
+  "version": "0.0.1",
+  "description": "A webpack plugin for deploy assets to remote server over sftp",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha --compilers ts:ts-node/register,tsx:ts-node/register --recursive ./src/**/*.spec.ts",
+    "lint": "tslint ./src/**/*.ts",
+    "build": "tsc",
+    "clean": "rm -rf ./dist ./lib",
+    "prepublish": "yarn run clean && yarn run lint && yarn run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acrazing/webpack-ssh-deploy-plugin.git"
+  },
+  "keywords": [
+    "webpack",
+    "ssh",
+    "deploy",
+    "plugin",
+    "webpack-ssh-deploy-plugin"
+  ],
+  "author": "acrazing <joking.young@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/acrazing/webpack-ssh-deploy-plugin/issues"
+  },
+  "homepage": "https://github.com/acrazing/webpack-ssh-deploy-plugin#readme"
+}
