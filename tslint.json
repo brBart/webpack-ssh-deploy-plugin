@@ -1,5 +1,36 @@
 {
   "rules": {
+    "array-type": [
+      true,
+      "array-simple"
+    ],
+    "arrow-parens": false,
+    "interface-name": [
+      true,
+      "never-prefix"
+    ],
+    "max-classes-per-file": [
+      false
+    ],
+    "member-access": false,
+    "member-ordering": false,
+    "no-bitwise": false,
+    "no-console": false,
+    "no-namespace": false,
+    "object-literal-sort-keys": false,
+    "one-variable-per-declaration": [
+      true,
+      "ignore-for-loop"
+    ],
+    "ordered-imports": false,
+    "switch-default": true,
+    "trailing-comma": [
+      true,
+      {
+        "singleline": "never",
+        "multiline": "always"
+      }
+    ],
     "curly": true,
     "class-name": true,
     "comment-format": [
@@ -13,14 +44,19 @@
     ],
     "no-eval": true,
     "no-internal-module": true,
-    "no-trailing-whitespace": true,
+    "no-trailing-whitespace": [
+      true,
+      "ignore-template-strings"
+    ],
     "no-unsafe-finally": true,
     "no-var-keyword": true,
     "no-duplicate-variable": true,
-    "no-use-before-declare": true,
-    "no-null-keyword": true,
+    "no-null-keyword": false,
     "no-inferrable-types": true,
-    "no-empty": true,
+    "no-empty": [
+      true,
+      "allow-empty-catch"
+    ],
     "one-line": [
       true,
       "check-open-brace",

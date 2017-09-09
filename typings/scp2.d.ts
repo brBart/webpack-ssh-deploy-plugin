@@ -1,15 +1,14 @@
 /*!
  *
- * Copyright 2016 - yangjunbao
+ * Copyright 2017 - acrazing
  *
- * @author yangjunbao yangjunbao@same.com
- * @since 2016-11-25 14:10:05
+ * @author acrazing joking.young@gmail.com
+ * @since 2017-09-09 17:50:55
  * @version 1.0.0
- * @desc modules.d.ts
+ * @desc scp2.d.ts
  */
 
-
-declare module "scp2" {
+declare module 'scp2' {
   import { EventEmitter } from 'events'
 
   export interface ClientOptions {
@@ -21,7 +20,7 @@ declare module "scp2" {
 
   export interface WriteOptions {
     destination: string;
-    content: Buffer|number;
+    content: Buffer | number;
   }
 
   export class Client extends EventEmitter {
