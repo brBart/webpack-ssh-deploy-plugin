@@ -32,7 +32,6 @@ class WrappedClient {
         error ? reject(error) : resolve(void 0)
       })
     }))
-
     return this.task
   }
 
@@ -42,7 +41,6 @@ class WrappedClient {
         error ? reject(error) : resolve(void 0)
       })
     }))
-
     return this.task
   }
 }
@@ -54,18 +52,11 @@ interface WrappedConnection extends ssh2.Client {
 const clients = createMap<WrappedClient>()
 const proxies = createMap<Promise<WrappedConnection>>()
 
-export interface ProxyOptions {
-  host: string;
-  port: string;
-  user: string;
-  privateKey: string;
-}
-
 export interface WebpackSshDeployPluginOptions extends scp2.ClientOptions {
   root: string;
-  sock: stream.Duplex;
+  sock?: stream.Duplex;
   proxy?: ssh2.ConnectConfig;
-  cache: RegExp;
+  cache?: RegExp;
 }
 
 function getScpClient(options: WebpackSshDeployPluginOptions) {
@@ -147,8 +138,8 @@ export class WebpackSshDeployPlugin {
     const assets     = compilation.assets
     const names      = Object.keys(assets).sort()
     let p            = Promise.resolve()
-    console.log('start plugin')
-    getScpClient(this.options).then((client) => {
+    console.log('start plugin, names: %s', names.join(','))
+    getScpClient(this.options).then((client: WrappedClient) => {
       console.log('get client')
       names.forEach((name) => {
         const dest    = path.join(this.options.root, publicPath, name)

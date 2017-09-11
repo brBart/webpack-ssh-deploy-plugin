@@ -7,56 +7,61 @@ A webpack plugin to deploy assets to remote server by scp.
 ```bash
 # yarn
 yarn add webpack-ssh-deploy-plugin -D
-
-# npm
-npm i -D webpack-ssh-deploy-plugin
 ```
 
 ## Usage
 
 Add this plugin instance to your webpack config as follow:
 
-```js
-// webpack.config.js
-const fs = require('fs')
-const os = require('os')
-const path = require('path')
-const WebpackSshDeployPlugin = require('webpack-ssh-deploy-plugin').WebpackSshDeployPlugin
-module.exports = {
-  // ... other config
-  plugins: [
-    // other plugins
-    new WebpackSshDeployPlugin({
-      root: '/home/work/www',
-      host: 'sandbox.example.com',
-      port: 22,
-      username: 'work',
-      privateKey: fs.readFileSync(path.join(os.homedir(), '.ssh/id_rsa')),
-    }),
-  ]
+```ts
+import * as fs from 'fs'
+import * as os from 'os'
+import * as path from 'path'
+import { WebpackSshDeployPlugin } from 'webpack-ssh-deploy-plugin'
+export = {
+    plugins: [
+        new WebpackSshDeployPlugin({
+            root: '/home/work/www',
+            host: 'sandbox.example.com',
+            port: 22,
+            username: 'work',
+            privateKey: fs.readFileSync(path.join(os.homedir(), '.ssh/id_rsa')),
+        })
+    ]
 }
 ```
 
-This will push all assets to the `host`, under the directory `root`.
+Options Schema:
 
-## Options
-
-```typescript
-export interface WebpackSshDeployPluginOptions {
-  // scp client configure
-  host: string; // host to deploy
-  port?: number; // port of ssh server
-  username: string; // login user name
-  password?: string; // user password, use password to login
-  privateKey?: string; // your privateKey, use public key to login
-  
-  // deploy config
-  root: string; // the root directory to deploy
-  cache?: RegExp; // the paths to cache, if a asset's path name is matched by 
-                  // the pattern, will only upload once, this is useful if your
-                  // output file name use `[chunkhash]` for cache control
+```ts
+interface WebpackSshDeployPluginOptions {
+    root: string;
+    sock: stream.Duplex;
+    proxy?: ssh2.ConnectConfig;
+    cache: RegExp;
+    host: string;
+    port?: number;
+    username: string;
+    privateKey: string;
 }
 ```
+
+## Note
+
+### Cache for immutable assets when develop
+
+If you want to let some assets just deploy once, set the `cache` field
+of option, which is used for match the asset path, if matched, will send
+once.
+
+### Proxy use `nc` options
+
+If you want to use proxy for access internal network by a jump machine,
+set `proxy` field as a `ssh2.ConnectConfig`.
+
+## Warning
+
+This plugin is use for development, just send assets to remote server.
 
 ## License
 

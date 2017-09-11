@@ -1,10 +1,10 @@
 {
   "name": "webpack-ssh-deploy-plugin",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A webpack plugin for deploy assets to remote server over sftp",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha --compilers ts:ts-node/register,tsx:ts-node/register --recursive ./src/**/*.spec.ts",
+    "test": "",
     "lint": "tslint ./src/**/*.ts",
     "build": "tsc",
     "clean": "rm -rf ./dist ./lib",
@@ -32,7 +32,8 @@
     "@types/ssh2": "^0.5.35",
     "@types/webpack": "^3.0.10",
     "tslint": "^5.7.0",
-    "typescript": "^2.5.2"
+    "typescript": "^2.5.2",
+    "webpack": "^3.5.4"
   },
   "dependencies": {
     "known-types": "^1.0.1",
